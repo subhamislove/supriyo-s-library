@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Us</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+  <header style="text-align: center; background-color: #333; color: white; margin: 0; padding: 1em 0;">
+    <img src="logo.jpg" alt="Library Icon" style="width: 50px; vertical-align: middle;">
+    <h1 style="display: inline; margin-left: 10px;">SUPRIYO'S KNOWLEDGE LIBRARY</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rules.html">Rules & Timing</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="join.html">Join Us</a></li>
+    </ul>
+  </nav>
+  <section>
+    <h2>Join Us</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Basic</h3>
+        <p>Access to physical books, Starts at Rs.999</p>
+      </div>
+      <div class="plan">
+        <h3>Premium</h3>
+        <p>Access to physical and online resources, Starts at Rs.1299</p>
+      </div>
+      <div class="plan">
+        <h3>Join as a Student</h3>
+        <p>Discounted plan for students with student ID</p>
+      </div>
+    </div>
+     <button
+    style="padding:10px; font-size:16px; cursor:pointer; min-width:150px;"
+    onclick="
+      if(!this.dataset.formShown){
+        this.dataset.formShown = 'true';
+        this.style.padding = '0';
+        this.style.minWidth = '300px';
+        this.innerHTML = `
+          <style>
+            .form-wrap { display:flex; flex-direction:column; gap:8px; padding:10px; }
+            .form-wrap input, .form-wrap select {
+              padding:6px; font-size:14px; border:1px solid #ccc; border-radius:4px;
+            }
+            .form-wrap .submit {
+              margin-top:10px; background:#4CAF50; color:#fff; border:none;
+              padding:8px; border-radius:4px; cursor:pointer; text-align:center;
+            }
+          </style>
+          <div class='form-wrap'>
+            <input placeholder='Name' />
+            <input placeholder='Phone Number' />
+            <input placeholder='Address' />
+            <select>
+              <option value=''>Select Plan Type</option>
+              <option value='basic'>Basic</option>
+              <option value='premium'>Premium</option>
+              <option value='student'>Join as a Student</option>
+            </select>
+            <div class='submit'>Submit</div>
+          </div>
+        `;
+
+        this.querySelector('.submit').onclick = e => {
+          e.stopPropagation();
+          const inputs = this.querySelectorAll('input, select');
+          let allFilled = true;
+          inputs.forEach(i => { if(!i.value.trim()) allFilled = false; });
+          if(allFilled){
+            this.innerHTML = 'We will notify you.';
+            this.style.padding = '10px';
+            this.style.minWidth = '150px';
+          }
+        };
+      }
+    "
+  >Apply here</button>
+    </div>
+  </section>
+</body>
+</html>
